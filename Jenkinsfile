@@ -5,22 +5,22 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building...'
-                // Add your build commands here
-                sh 'mvn clean install'
+                // Use 'bat' for Windows commands
+                bat 'mvn clean install'
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing...'
-                // Add your test commands here
-                sh 'mvn test'
+                // Use 'bat' for Windows commands
+                bat 'mvn test'
             }
         }
         stage('Deploy') {
             steps {
                 echo 'Deploying...'
-                // Add your deployment commands here
-                sh 'mvn spring-boot:run'
+                // Use 'bat' for Windows commands
+                bat 'mvn spring-boot:run'
             }
         }
     }
