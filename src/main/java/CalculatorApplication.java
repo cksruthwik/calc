@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class CalculatorApplication {
 
     public static void main(String[] args) {
-        //root 1.0
+        //root 1.1
         SpringApplication.run(CalculatorApplication.class, args);
     }
 }
