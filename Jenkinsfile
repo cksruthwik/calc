@@ -2,38 +2,23 @@ pipeline {
     agent any
 
     stages {
-        stage('Kill Process') {
-            steps {
-                script {
-                    // Get the PID from the environment variable
-                    
-                        sh "lsof -t -i :8080 | xargs kill -9
-"
-                    
-                    }
-                }
-            }
-        
         stage('Build') {
             steps {
                 echo 'Building...'
-                //run 2
-                // Use 'bat' for Windows commands
                 bat 'mvn clean install'
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing...'
-                // Use 'bat' for Windows commands
                 bat 'mvn test'
             }
         }
         stage('Deploy') {
             steps {
                 echo 'Deploying...'
-                // Use 'bat' for Windows commands
-                bat 'mvn spring-boot:run'
+                // Use 'nohup' to run in the background on Unix-like systems
+                sh 'nohup mvn spring-boot:run > deploy.log 2>&1 &'
             }
         }
     }
@@ -41,9 +26,11 @@ pipeline {
     post {
         success {
             echo 'Pipeline succeeded!'
+            // Any cleanup or additional steps you want to perform on success
         }
         failure {
             echo 'Pipeline failed. Check the console output for details.'
+            // Any cleanup or additional steps you want to perform on failure
         }
     }
 }
