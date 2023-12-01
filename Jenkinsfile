@@ -2,8 +2,7 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
-            stage('Kill Process') {
+        stage('Kill Process') {
             steps {
                 script {
                     // Get the PID from the environment variable
@@ -18,6 +17,7 @@ pipeline {
                 }
             }
         }
+        stage('Build') {
             steps {
                 echo 'Building...'
                 //run 2
