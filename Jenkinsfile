@@ -3,6 +3,21 @@ pipeline {
 
     stages {
         stage('Build') {
+            stage('Kill Process') {
+            steps {
+                script {
+                    // Get the PID from the environment variable
+                    def pid = env.SPRING_BOOT_PID
+
+                    if (pid) {
+                        // Kill the process
+                        sh "kill -15 ${pid}"
+                    } else {
+                        echo "No PID found. The process might not be running."
+                    }
+                }
+            }
+        }
             steps {
                 echo 'Building...'
                 //run 2
