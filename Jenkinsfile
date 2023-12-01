@@ -18,7 +18,7 @@ pipeline {
             steps {
                 echo 'Deploying...'
                 // Use 'nohup' to run in the background on Unix-like systems
-                bat 'start /B mvn spring-boot:run'
+                bat 'mvn spring-boot:run'
             }
         }
     }
