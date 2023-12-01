@@ -6,17 +6,14 @@ pipeline {
             steps {
                 script {
                     // Get the PID from the environment variable
-                    def pid = env.SPRING_BOOT_PID
-
-                    if (pid) {
-                        // Kill the process
-                        sh "kill -15 ${pid}"
-                    } else {
-                        echo "No PID found. The process might not be running."
+                    
+                        sh "lsof -t -i :8080 | xargs kill -9
+"
+                    
                     }
                 }
             }
-        }
+        
         stage('Build') {
             steps {
                 echo 'Building...'
